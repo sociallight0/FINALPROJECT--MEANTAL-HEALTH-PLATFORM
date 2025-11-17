@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - MindSpace</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <nav class="bg-teal-600 text-white p-4 shadow-lg">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">MindSpace</h1>
+      <button id="logoutBtn" class="btn-logout">Logout</button>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8">Welcome back, <span id="userName"></span> 💚</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div class="feature-card-large" onclick="openMoodModal()">
+        <h3>Log Today's Mood</h3>
+      </div>
+      <div class="feature-card-large" onclick="openJournalModal()">
+        <h3>Write a Journal Entry</h3>
+      </div>
+      <div class="feature-card-large" onclick="startBreathing()">
+        <h3>Guided Breathing</h3>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6">
+      <h3 class="text-2xl font-semibold mb-4">Your Mood Trend (Last 7 Days)</h3>
+      <canvas id="moodChart" height="100"></canvas>
+    </div>
+
+    <div class="mt-10 bg-red-50 border border-red-200 rounded-xl p-6">
+      <h3 class="text-xl font-bold text-red-800">Crisis Support (Kenya)</h3>
+      <p class="mt-2"><strong>Befrienders Kenya:</strong> +254 722 201 789</p>
+      <p><strong>Kenya Red Cross Toll-Free:</strong> 1199</p>
+      <p class="mt-4 font-medium">You are not alone. Help is available 24/7.</p>
+    </div>
+  </main>
+
+  <!-- Modals will be injected by JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

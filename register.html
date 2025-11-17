@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - MindSpace</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-gradient-to-b from-teal-50 to-white flex items-center justify-center min-h-screen">
+  <div class="auth-card">
+    <h2 class="text-3xl font-bold text-teal-700 text-center mb-8">Join MindSpace</h2>
+    <form id="registerForm">
+      <input type="text" id="regName" placeholder="Full Name" required class="input-field" />
+      <input type="email" id="regEmail" placeholder="Email" required class="input-field" />
+      <input type="password" id="regPassword" placeholder="Password" required class="input-field" />
+      <button type="submit" class="btn-primary w-full">Create Account</button>
+    </form>
+    <p class="text-center mt-6 text-gray-600">
+      Already have an account? <a href="login.html" class="text-teal-600 font-medium">Login</a>
+    </p>
+    <div id="registerError" class="text-red-500 text-center mt-4 hidden"></div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

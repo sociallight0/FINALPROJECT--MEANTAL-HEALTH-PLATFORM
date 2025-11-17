@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - MindSpace</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-gradient-to-b from-teal-50 to-white flex items-center justify-center min-h-screen">
+  <div class="auth-card">
+    <h2 class="text-3xl font-bold text-teal-700 text-center mb-8">Welcome Back</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required class="input-field" />
+      <input type="password" id="loginPassword" placeholder="Password" required class="input-field" />
+      <button type="submit" class="btn-primary w-full">Login</button>
+    </form>
+    <p class="text-center mt-6 text-gray-600">
+      Don't have an account? <a href="register.html" class="text-teal-600 font-medium">Sign up</a>
+    </p>
+    <div id="loginError" class="text-red-500 text-center mt-4 hidden"></div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
