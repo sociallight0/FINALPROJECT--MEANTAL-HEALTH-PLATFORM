@@ -1,118 +1,79 @@
-# MindfulSpace - Mental Health Support Platform
+# Mental Health Support Platform
 
-A comprehensive mental health support application with mood tracking, journaling, AI-powered chat support, and educational resources.
+A comprehensive web application for mental health support, mood tracking, journaling, and professional resources.
 
-## 📋 Table of Contents
+## Features
 
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Database Schema](#database-schema)
-- [API Endpoints](#api-endpoints)
-- [Deployment](#deployment)
-- [Security Considerations](#security-considerations)
-- [Future Enhancements](#future-enhancements)
+- **User Authentication**: Secure registration and login system
+- **Mood Tracking**: Daily mood logging with visual analytics
+- **Journal Entries**: Private journaling with emotional tagging
+- **Mental Health Resources**: Curated articles and professional help information
+- **Breathing Exercises**: Interactive guided breathing exercises
+- **Crisis Support**: Immediate access to crisis hotlines and resources
+- **Analytics Dashboard**: Visual representation of mental health patterns
 
-## ✨ Features
-
-### 1. User Authentication
-- User registration with email and password
-- Secure login system
-- Session management
-- User profile data
-
-### 2. Dashboard
-- Real-time mood statistics
-- Trend analysis (improving/declining/stable)
-- Recent activity overview
-- Visual data representation
-
-### 3. Mood Tracker
-- 5-level mood scale (Great, Good, Okay, Low, Bad)
-- Optional notes for each entry
-- Complete mood history
-- Timestamp tracking
-- Mood trend visualization
-
-### 4. Journal System
-- Create titled journal entries
-- Long-form content writing
-- View all previous entries
-- Chronological sorting
-- Full-text storage
-
-### 5. AI-Powered Chat Support
-- Real-time conversational interface
-- Context-aware AI responses
-- Emotional keyword detection
-- Crisis resource information
-- Persistent chat history
-
-### 6. Resources Library
-- Educational articles on:
-  - Anxiety management
-  - Depression support
-  - Stress management
-  - Building resilience
-  - Mindfulness practices
-  - Sleep hygiene
-- Professional help resources
-- Crisis hotlines
-
-## 🛠 Technology Stack
+## Tech Stack
 
 ### Frontend
-- **React 18** - UI framework
-- **Lucide React** - Icon library
-- **Tailwind CSS** - Utility-first styling
+- HTML5
+- CSS3 (Custom styling with modern design)
+- Vanilla JavaScript (ES6+)
 
-### Backend (Current Implementation)
-- **LocalStorage API** - Client-side data persistence
-- **Simulated REST API** - Async operations with delays
+### Backend
+- Node.js
+- Express.js
+- JWT for authentication
+- bcrypt for password hashing
 
-### Recommended Production Stack
-- **Backend**: Node.js + Express.js or Python + Django/FastAPI
-- **Database**: PostgreSQL or MongoDB
-- **Authentication**: JWT or OAuth 2.0
-- **AI Integration**: OpenAI API or Anthropic Claude API
-- **Hosting**: AWS, Google Cloud, or Azure
+### Database
+- MongoDB (with Mongoose ODM)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 mental-health-platform/
-├── index.html              # Main HTML file
-├── styles.css              # Global styles and Tailwind utilities
-├── app.js                  # Main React application
-├── components/
-│   ├── Auth.js            # Authentication component
-│   ├── Dashboard.js       # Dashboard view
-│   ├── MoodTracker.js     # Mood tracking component
-│   ├── Journal.js         # Journal component
-│   ├── Chat.js            # AI chat interface
-│   └── Resources.js       # Resources library
-├── api/
-│   └── index.js           # API simulation layer
-├── utils/
-│   └── helpers.js         # Utility functions
-└── README.md              # This file
+├── frontend/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       ├── app.js
+│       ├── auth.js
+│       └── dashboard.js
+├── backend/
+│   ├── server.js
+│   ├── config/
+│   │   └── database.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── MoodEntry.js
+│   │   └── JournalEntry.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── mood.js
+│   │   └── journal.js
+│   └── middleware/
+│       └── auth.js
+├── package.json
+└── README.md
 ```
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v14 or higher)
+- MongoDB (v4.4 or higher)
 - npm or yarn
-- Modern web browser
 
-### Development Setup
+### Steps
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/mindfulspace.git
-cd mindfulspace
+git clone <repository-url>
+cd mental-health-platform
 ```
 
 2. **Install dependencies**
@@ -120,231 +81,183 @@ cd mindfulspace
 npm install
 ```
 
-3. **Install required packages**
-```bash
-npm install react react-dom lucide-react
-npm install -D tailwindcss postcss autoprefixer
+3. **Set up environment variables**
+
+Create a `.env` file in the root directory:
+
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/mental_health_db
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+NODE_ENV=development
 ```
 
-4. **Initialize Tailwind CSS**
+4. **Start MongoDB**
+
+Make sure MongoDB is running on your system:
 ```bash
-npx tailwindcss init -p
+# On macOS with Homebrew
+brew services start mongodb-community
+
+# On Linux
+sudo systemctl start mongod
+
+# On Windows
+net start MongoDB
 ```
 
-5. **Start development server**
+5. **Start the backend server**
 ```bash
 npm start
 ```
 
-6. **Open in browser**
-```
-http://localhost:3000
-```
+The server will start on `http://localhost:3000`
 
-## 💻 Usage
+6. **Open the frontend**
 
-### Running the Application
+Open `frontend/index.html` in your browser, or serve it using a local server:
 
-1. **First-time users**: Click "Register" and create an account
-2. **Returning users**: Login with your credentials
-3. **Navigate** through the tabs: Dashboard, Mood Tracker, Journal, AI Support, Resources
+```bash
+# Using Python 3
+cd frontend
+python -m http.server 8000
 
-### Testing the Application
-
-**Test User Credentials:**
-- Email: test@example.com
-- Password: test123
-
-Or create your own account!
-
-## 🗄 Database Schema
-
-### Users Table
-```javascript
-{
-  id: Number,
-  username: String,
-  email: String,
-  password: String, // Hashed in production
-  createdAt: DateTime
-}
+# Using Node.js http-server
+npx http-server frontend -p 8000
 ```
 
-### Mood Entries Table
-```javascript
-{
-  id: Number,
-  userId: Number,
-  mood: Number (1-5),
-  moodLabel: String,
-  note: String,
-  timestamp: DateTime
-}
-```
+Then navigate to `http://localhost:8000`
 
-### Journal Entries Table
-```javascript
-{
-  id: Number,
-  userId: Number,
-  title: String,
-  content: Text,
-  timestamp: DateTime
-}
-```
-
-### Chat Messages Table
-```javascript
-{
-  userId: Number,
-  role: String ('user' | 'assistant'),
-  content: Text,
-  timestamp: DateTime
-}
-```
-
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Register new user
+- `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - Login user
-- `POST /api/auth/logout` - Logout user
+- `GET /api/auth/profile` - Get user profile (protected)
 
 ### Mood Tracking
-- `GET /api/moods/:userId` - Get all mood entries
-- `POST /api/moods/:userId` - Create mood entry
-- `GET /api/moods/:userId/stats` - Get mood statistics
+- `POST /api/mood` - Create a mood entry (protected)
+- `GET /api/mood` - Get all mood entries for user (protected)
+- `GET /api/mood/stats` - Get mood statistics (protected)
 
 ### Journal
-- `GET /api/journal/:userId` - Get all journal entries
-- `POST /api/journal/:userId` - Create journal entry
-- `PUT /api/journal/:entryId` - Update journal entry
-- `DELETE /api/journal/:entryId` - Delete journal entry
+- `POST /api/journal` - Create a journal entry (protected)
+- `GET /api/journal` - Get all journal entries (protected)
+- `GET /api/journal/:id` - Get specific journal entry (protected)
+- `PUT /api/journal/:id` - Update journal entry (protected)
+- `DELETE /api/journal/:id` - Delete journal entry (protected)
 
-### Chat
-- `GET /api/chat/:userId` - Get chat history
-- `POST /api/chat/:userId` - Send message and get AI response
+## Usage
 
-## 🌐 Deployment
+### Registration
+1. Navigate to the registration page
+2. Fill in your name, email, and password
+3. Click "Sign Up"
 
-### Production Deployment Steps
+### Login
+1. Navigate to the login page
+2. Enter your credentials
+3. Click "Login"
 
-1. **Set up backend server**
-   - Create Express.js or Django backend
-   - Set up PostgreSQL/MongoDB database
-   - Implement JWT authentication
+### Mood Tracking
+1. From the dashboard, select your current mood
+2. Add optional notes
+3. Submit to track your mood
 
-2. **Configure environment variables**
-```env
-DATABASE_URL=postgresql://user:pass@host:5432/dbname
-JWT_SECRET=your_secret_key
-AI_API_KEY=your_ai_api_key
-PORT=5000
-```
+### Journaling
+1. Click on "New Journal Entry"
+2. Write your thoughts
+3. Tag the entry with emotions
+4. Save the entry
 
-3. **Build frontend**
+### Viewing Analytics
+1. Navigate to the Analytics section
+2. View mood trends over time
+3. Analyze patterns in your mental health journey
+
+## Security Features
+
+- Password hashing with bcrypt (10 rounds)
+- JWT-based authentication
+- Protected API routes
+- Input validation and sanitization
+- HTTP-only cookies (recommended for production)
+- CORS configuration
+
+## Development
+
+### Running in Development Mode
+
 ```bash
-npm run build
+npm run dev
 ```
 
-4. **Deploy to hosting service**
-   - Frontend: Vercel, Netlify, or AWS S3
-   - Backend: Heroku, AWS EC2, or Google Cloud
-   - Database: AWS RDS, MongoDB Atlas
+This will start the server with nodemon for auto-reloading.
 
-5. **Set up SSL certificate** (Let's Encrypt)
+### Testing
 
-6. **Configure CDN** for static assets
+```bash
+npm test
+```
 
-## 🔒 Security Considerations
+## Production Deployment
 
-### Current Implementation
-- Client-side storage (not secure for production)
-- Plain text passwords (must be hashed)
-- No encryption
+### Environment Variables for Production
 
-### Production Requirements
+Update your `.env` file:
 
-1. **Authentication**
-   - Implement bcrypt for password hashing
-   - Use JWT tokens with refresh tokens
-   - Add rate limiting for login attempts
+```env
+NODE_ENV=production
+MONGODB_URI=your_production_mongodb_uri
+JWT_SECRET=your_strong_production_secret
+PORT=3000
+```
 
-2. **Data Protection**
-   - Encrypt sensitive data at rest
-   - Use HTTPS for all communications
-   - Implement CORS policies
-   - Sanitize user inputs
+### Deployment Checklist
 
-3. **Privacy Compliance**
-   - HIPAA compliance for health data
-   - GDPR compliance for EU users
-   - Clear privacy policy
-   - Data export/deletion features
+- [ ] Set strong JWT_SECRET
+- [ ] Use production MongoDB instance
+- [ ] Enable HTTPS
+- [ ] Set up proper CORS policies
+- [ ] Implement rate limiting
+- [ ] Set up logging and monitoring
+- [ ] Configure backup strategy
+- [ ] Review and update security headers
 
-4. **Security Headers**
-   - Content Security Policy
-   - X-Frame-Options
-   - X-Content-Type-Options
+## Crisis Resources
 
-## 🎯 Future Enhancements
+The platform includes immediate access to:
+- National Suicide Prevention Lifeline: 988
+- Crisis Text Line: Text HOME to 741741
+- International Association for Suicide Prevention
+- SAMHSA National Helpline: 1-800-662-4357
 
-### Planned Features
-- [ ] Email verification
-- [ ] Password reset functionality
-- [ ] Data export (PDF/CSV)
-- [ ] Advanced mood analytics with charts
-- [ ] Medication reminders
-- [ ] Therapist appointment scheduling
-- [ ] Community support groups
-- [ ] Mobile app (React Native)
-- [ ] Push notifications
-- [ ] Multi-language support
-- [ ] Dark mode
-- [ ] Voice journaling
-- [ ] Integration with wearables
+## Contributing
 
-### AI Improvements
-- [ ] Connect to real AI API (Claude, GPT-4)
-- [ ] Conversation context preservation
-- [ ] Emotion detection from text
-- [ ] Personalized coping strategies
-- [ ] Crisis detection and intervention
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-### Analytics
-- [ ] Weekly/monthly mood reports
-- [ ] Pattern recognition
-- [ ] Trigger identification
-- [ ] Progress tracking over time
+## License
 
-## 📞 Support & Resources
+MIT License - see LICENSE file for details
 
-### Crisis Resources
-- **988** - Suicide & Crisis Lifeline
-- **Text "HELLO" to 741741** - Crisis Text Line
-- **1-800-950-6264** - NAMI Helpline
+## Support
 
-### Professional Help
-- Psychology Today - Therapist Directory
-- BetterHelp - Online Therapy
-- SAMHSA Treatment Locator
+For issues and questions, please open an issue on GitHub or contact support.
 
-## 📄 License
+## Disclaimer
 
-MIT License - feel free to use this project for personal or commercial purposes.
+This platform is designed to support mental health awareness and self-tracking. It is not a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact emergency services or a mental health professional immediately.
 
-## 🤝 Contributing
+## Acknowledgments
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 👨‍💻 Author
-
-Built with ❤️ for mental health awareness
-
-## ⚠️ Disclaimer
-
-This application is not a substitute for professional mental health care. If you are in crisis or need immediate help, please contact emergency services or a crisis hotline immediately.
+- Crisis hotline information provided by national mental health organizations
+- Breathing exercise techniques based on evidence-based practices
+- Mental health resources curated from reputable sources
 
 ---
 
-**Remember**: Your mental health matters. Take care of yourself. 💙
+**Remember: Your mental health matters. You are not alone.** 💚
